@@ -1,0 +1,41 @@
+.price { position: relative; color: var(--fg); }
+.price__pin { height: 100vh; padding: calc(var(--nav) + 4px) var(--gutter) 24px; display: grid; grid-template-columns: minmax(250px, 1fr) minmax(0, 2.25fr) minmax(220px, 1fr); align-items: center; gap: 12px; overflow: hidden; }
+.price .duo { font-size: clamp(42px, 4.5vw, 76px); }
+.price__dial { position: relative; height: min(100%, calc(100vh - var(--nav) - 28px)); min-width: 0; display: grid; place-items: center; }
+.price__dial > svg { width: 100%; height: 100%; overflow: visible; }
+.dial__track { fill: none; stroke: rgba(11, 33, 41, .5); stroke-width: 1.5; stroke-dasharray: 1.5 7; }
+.dial__arc { fill: none; stroke: var(--turquesa); stroke-width: 10; transform: rotate(90deg); transform-origin: 450px 360px; }
+.dial__tick { stroke: var(--tinta); stroke-width: 1; opacity: 0; }
+.dial__tick.big { stroke-width: 1.5; }
+.dial__num { fill: var(--tinta-2); font: 500 13px var(--f-sans); text-anchor: middle; dominant-baseline: central; opacity: 0; }
+.dial__item { opacity: .4; transition: opacity .45s var(--out); }
+.dial__item.is-past { opacity: 1; }
+.dial__item.is-now { opacity: 1; }
+.dial__item text { fill: var(--tinta); font: 400 17px var(--f-sans); dominant-baseline: central; transition: fill .4s var(--out); }
+.dial__item.is-now text { fill: var(--turquesa-escura); }
+.dial__item tspan { font-weight: 600; }
+.dial__item line { stroke: var(--tinta); stroke-width: 1; }
+.dial__item circle { fill: var(--cal); stroke: var(--turquesa-escura); stroke-width: 2; }
+.dial__item.is-past circle { fill: var(--turquesa); }
+.dial__boat { fill: var(--tinta); stroke: var(--cal); stroke-width: 1.5; }
+.dial__center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(62%, 390px); text-align: center; pointer-events: none; }
+.dial__price { font-family: var(--f-serif); font-size: clamp(40px, 3.7vw, 64px); line-height: 1; letter-spacing: -.025em; white-space: nowrap; }
+.dial__who { margin-top: 12px; font-size: 11px; font-weight: 500; letter-spacing: .24em; }
+.dial__now { position: relative; height: 26px; margin-top: 14px; overflow: hidden; font-size: 15px; color: var(--turquesa-escura); }
+.dial__now span { position: absolute; inset: 0; white-space: nowrap; }
+.price__side p { font-size: 17px; max-width: 290px; }
+.btn-sol { margin-top: 26px; color: #bd5114; border-color: var(--sol); min-height: 54px; min-width: 210px; }
+.btn-sol:hover { background: var(--sol); color: var(--tinta); }
+@media (max-width: 1040px) { .price__pin { grid-template-columns: 1fr 1.6fr; grid-template-rows: auto 1fr; } .price__dial { grid-column: 2; grid-row: 1 / 3; } .price__side { grid-column: 1; align-self: start; } }
+@media (max-width: 759px) {
+  .price__pin { display: flex; flex-direction: column; align-items: stretch; gap: 8px; padding-top: calc(var(--nav) + 4px); }
+  .price .duo { font-size: 40px; }
+  .price__dial { flex: 1; min-height: 0; height: auto; }
+  .dial__item text, .dial__item line { display: none; }
+  .dial__center { width: 66%; }
+  .dial__price { font-size: 36px; }
+  .dial__who { font-size: 10px; margin-top: 8px; }
+  .dial__now { font-size: 13px; margin-top: 6px; }
+  .price__side p { max-width: none; font-size: 15px; }
+  .btn-sol { width: 100%; margin-top: 12px; min-height: 48px; }
+}

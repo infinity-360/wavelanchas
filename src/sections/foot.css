@@ -1,0 +1,21 @@
+.foot { position: relative; min-height: 100vh; overflow: hidden; background: var(--abismo); color: var(--cal); padding: calc(var(--nav) + 8px) var(--gutter) 24px; display: flex; flex-direction: column; }
+.foot__time { font-family: var(--f-serif); font-size: clamp(92px, 16vw, 270px); line-height: .9; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.foot__night { margin-top: -.08em; font-family: var(--f-script); font-size: clamp(54px, 7vw, 118px); line-height: 1.1; color: var(--turquesa); padding: .1em .3em .1em .1em; width: fit-content; }
+.foot__cols { margin-top: auto; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(247, 245, 240, .24); border-bottom: 1px solid rgba(247, 245, 240, .24); }
+.foot__cols > div { padding: 20px 24px 20px 0; font-size: 15px; display: flex; flex-direction: column; gap: 4px; }
+.foot__cols > div + div { padding-left: 24px; border-left: 1px solid rgba(247, 245, 240, .24); }
+.foot__cols a { width: fit-content; min-height: 24px; border-bottom: 1px solid transparent; transition: border-color .35s var(--out), color .35s var(--out); }
+.foot__cols a:hover { color: var(--turquesa); border-color: currentColor; }
+.foot__label { font-size: 10px; font-weight: 500; letter-spacing: .22em; color: var(--turquesa); margin-bottom: 4px; }
+.foot__logo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; }
+.foot__cols > div:last-child span:last-child { max-width: 340px; color: rgba(247, 245, 240, .84); }
+.foot__mark { position: relative; margin-top: 18px; overflow: hidden; border-bottom: 2px solid var(--turquesa); }
+.foot__word { display: flex; justify-content: space-between; font-family: var(--f-serif); font-size: 25vw; line-height: .78; padding-top: .04em; }
+.foot__word span { display: block; will-change: transform; }
+.foot__legal { margin-top: 12px; font-size: 11px; line-height: 1.5; color: rgba(247, 245, 240, .68); }
+@media (max-width: 759px) {
+  .foot__cols { grid-template-columns: 1fr; margin-top: 34px; }
+  .foot__cols > div { padding: 14px 0; }
+  .foot__cols > div + div { padding-left: 0; border-left: 0; border-top: 1px solid rgba(247, 245, 240, .24); }
+  .foot__word { font-size: 27vw; }
+}

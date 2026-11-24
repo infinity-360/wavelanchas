@@ -1,0 +1,14 @@
+.nav { position: fixed; z-index: 40; top: 0; left: 0; right: 0; height: var(--nav); padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; color: var(--cal); transition: transform .7s var(--out), color .4s var(--out); }
+.nav::before { content: ''; position: absolute; inset: 0 0 -24px; z-index: -1; opacity: 0; pointer-events: none; background: linear-gradient(180deg, var(--veil, rgba(4, 32, 44, .82)), transparent); transition: opacity .4s var(--out); }
+.nav.is-veil::before { opacity: 1; }
+.nav.is-hidden { transform: translateY(-100%); }
+.nav.is-dark { color: var(--tinta); --veil: rgba(247, 245, 240, .86); }
+.nav__brand { display: flex; align-items: center; gap: 14px; min-height: 44px; }
+.nav__logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px rgba(247, 245, 240, .5); }
+.nav__word { font-family: var(--f-serif); font-size: 20px; letter-spacing: .42em; }
+.nav__right { display: flex; align-items: center; gap: clamp(20px, 2.6vw, 38px); }
+.nav__links { display: flex; gap: clamp(18px, 2.2vw, 32px); font-size: 14px; }
+.nav__links a { position: relative; padding: 12px 0; }
+.nav__links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 7px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .5s var(--out); }
+.nav__links a:hover::after, .nav__links a.is-current::after { transform: scaleX(1); transform-origin: left; }
+@media (max-width: 860px) { .nav__links { display: none; } }

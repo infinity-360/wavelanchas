@@ -1,0 +1,9 @@
+.intro { position: fixed; inset: 0; z-index: 30; pointer-events: none; }
+.intro__foot { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 34px; display: flex; justify-content: space-between; align-items: end; gap: 20px; }
+.intro__word { display: inline-flex; overflow: hidden; font-family: var(--f-serif); font-size: 22px; letter-spacing: .42em; line-height: 1.2; color: var(--cal); }
+.intro__word span { display: inline-block; }
+.intro__coord { font-size: 10px; letter-spacing: .24em; color: rgba(247, 245, 240, .72); text-align: right; }
+.intro-on body { overflow: hidden; }
+.intro-on:not(.intro-reveal) .day__shade, .intro-on:not(.intro-reveal) .hud__track, .intro-on:not(.intro-reveal) .hud__hint { opacity: 0; }
+.intro-on:not(.intro-reveal) .nav { transform: translateY(-100%); }
+@media (max-width: 759px) { .intro__foot { bottom: 22px; } .intro__coord { max-width: 190px; line-height: 1.6; letter-spacing: .16em; } }

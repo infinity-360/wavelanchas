@@ -1,0 +1,49 @@
+.day { position: relative; height: 100vh; overflow: hidden; background: var(--abismo); color: var(--cal); }
+.day__stage { position: absolute; inset: 0; will-change: clip-path, transform; }
+.day__still, .day__canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.day__still { z-index: 1; transition: opacity .3s linear; }
+.day__shade { position: absolute; inset: 0; z-index: 2; background: radial-gradient(90% 90% at 0% 100%, rgba(4, 32, 44, .86) 0%, rgba(4, 32, 44, .46) 42%, transparent 72%), linear-gradient(0deg, rgba(4, 32, 44, .5), transparent 24%), linear-gradient(180deg, rgba(4, 32, 44, .34), transparent 20%); }
+
+.port { position: absolute; z-index: 3; inset: 0; margin: auto; width: min(480px, 56vh, 86vw); height: min(480px, 56vh, 86vw); opacity: 0; pointer-events: none; will-change: transform, opacity; }
+.port svg { width: 100%; height: 100%; overflow: visible; }
+.port__track { fill: none; stroke: rgba(247, 245, 240, .28); stroke-width: 1; }
+.port__arc { fill: none; stroke: var(--turquesa); stroke-width: 3; transform: rotate(90deg); transform-origin: 150px 150px; }
+.port__ticks line { stroke: rgba(247, 245, 240, .5); stroke-width: 1; }
+.port__ticks line.big { stroke-width: 1.4; }
+.port__ticks line.is-on { stroke: var(--turquesa); }
+.port__ticks text { fill: var(--cal); font: 500 7px var(--f-sans); letter-spacing: .08em; text-anchor: middle; dominant-baseline: central; }
+
+.day__copy { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.hero, .hour { position: absolute; left: var(--gutter); bottom: 142px; width: min(760px, calc(100vw - 2 * var(--gutter))); text-shadow: 0 1px 24px rgba(4, 32, 44, .35); }
+.hero .duo, .hour .duo { font-size: clamp(44px, 4.8vw, 82px); }
+.hero p, .hour__p { margin-top: 22px; max-width: 430px; font-size: clamp(16px, 1.25vw, 20px); }
+.where { position: absolute; right: var(--gutter); top: calc(var(--nav) + 10px); text-align: right; }
+.where li { position: absolute; right: 0; top: 0; width: max-content; font-size: 11px; font-weight: 500; letter-spacing: .24em; text-shadow: 0 1px 14px rgba(4, 32, 44, .6); }
+.day__caption { position: absolute; left: 0; right: 0; top: calc(50% + min(240px, 28vh, 43vw) + 76px); text-align: center; font-size: 11px; font-weight: 500; letter-spacing: .24em; }
+
+.hud { position: absolute; z-index: 5; left: var(--gutter); right: var(--gutter); bottom: 34px; height: 44px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; pointer-events: none; }
+.hud__track { --o: 1; position: relative; width: min(360px, 100%); height: 1px; background: rgba(247, 245, 240, .34); opacity: var(--o); transition: opacity .6s var(--out); }
+.hud__fill { position: absolute; inset: -.5px 0; background: var(--cal); transform: scaleX(0); transform-origin: left; }
+.hud__ticks li { position: absolute; left: var(--x); top: 8px; transform: translateX(-50%); font-size: 10px; letter-spacing: .1em; opacity: .5; transition: opacity .4s var(--out), color .4s var(--out); }
+.hud__ticks li:first-child { transform: none; }
+.hud__ticks li.is-on { opacity: 1; color: var(--turquesa); }
+.hud__hint { display: flex; align-items: center; gap: 14px; font-size: 10px; font-weight: 500; letter-spacing: .24em; transition: opacity .5s var(--out); }
+.hud__hint.is-off { opacity: 0; }
+.hud__dot { position: relative; width: 32px; height: 32px; border: 1px solid currentColor; border-radius: 50%; overflow: hidden; }
+.hud__dot::after { content: ''; position: absolute; left: 50%; top: 8px; width: 1px; height: 8px; background: currentColor; animation: drip 1.8s var(--inout) infinite; }
+.hud__hint.is-off .hud__dot::after { animation-play-state: paused; }
+@keyframes drip { 0% { transform: translateY(-8px); opacity: 0; } 35% { opacity: 1; } 100% { transform: translateY(12px); opacity: 0; } }
+.hud__clock { justify-self: end; display: inline-flex; font-size: 15px; font-variant-numeric: tabular-nums; font-weight: 500; line-height: 1; will-change: transform; }
+
+@media (max-width: 759px) {
+  .day__shade { background: linear-gradient(0deg, rgba(4, 32, 44, .92) 0%, rgba(4, 32, 44, .66) 34%, transparent 60%), linear-gradient(180deg, rgba(4, 32, 44, .42), transparent 22%); }
+  .hero, .hour { bottom: 142px; }
+  .hero .duo, .hour .duo { font-size: 44px; }
+  .hero .duo .s, .hour .duo .s { display: block; width: fit-content; margin-bottom: -.1em; }
+  .where { left: var(--gutter); right: auto; top: calc(var(--nav) + 2px); text-align: left; }
+  .where li { left: 0; right: auto; font-size: 10px; letter-spacing: .16em; }
+  .hud { bottom: 18px; height: 88px; grid-template-columns: 1fr auto; grid-template-rows: 34px 44px; }
+  .hud__track { grid-column: 1 / -1; width: 100%; align-self: start; margin-top: 4px; }
+  .hud__hint { grid-column: 1; grid-row: 2; }
+  .hud__clock { grid-column: 2; grid-row: 2; }
+}

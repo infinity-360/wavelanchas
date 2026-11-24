@@ -1,0 +1,23 @@
+:root {
+  --abismo: #04202c;
+  --mar: #1d5e66;
+  --turquesa: #2fb3b8;
+  --turquesa-escura: #1f8f95;
+  --areia: #efe6d6;
+  --cal: #f7f5f0;
+  --tinta: #0b2129;
+  --tinta-2: #4d5f64;
+  --sol: #e8742c;
+  --bg: var(--abismo);
+  --fg: var(--cal);
+  --f-script: 'Monsieur La Doulaise', cursive;
+  --f-serif: 'Instrument Serif', Georgia, serif;
+  --f-sans: 'Figtree Variable', system-ui, sans-serif;
+  --gutter: clamp(20px, 3.4vw, 56px);
+  --nav: 96px;
+  --out: cubic-bezier(.16, 1, .3, 1);
+  --in: cubic-bezier(.7, 0, .84, 0);
+  --inout: cubic-bezier(.76, 0, .24, 1);
+  --over: cubic-bezier(.34, 1.56, .64, 1);
+}
+@media (max-width: 759px) { :root { --nav: 72px; } }
