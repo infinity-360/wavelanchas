@@ -7,7 +7,8 @@ import { lerp, span } from './ease.js';
 export const PIN = 1.6;
 const SWEEP = [0.08, 0.9];
 const H0 = 10, H1 = 18; // diárias das 10:00 às 18:00 (post da Wave)
-const ITEMS = [[10, 'embarque'], [11, 'saída para o mar'], [12, 'primeiro mergulho'], [14, 'som na popa'], [16, 'mais um mergulho'], [17, 'fim de tarde'], [18, 'desembarque']];
+// de 2 em 2 horas: com 1 h de distância os rótulos se encostam no topo do mostrador
+const ITEMS = [[10, 'embarque'], [12, 'primeiro mergulho'], [14, 'som na popa'], [16, 'fim de tarde'], [18, 'desembarque']];
 const CX = 450, CY = 360, R = 250;
 const NS = 'http://www.w3.org/2000/svg';
 const pt = (h, r) => { const a = (h / 24) * Math.PI * 2; return [CX - Math.sin(a) * r, CY + Math.cos(a) * r]; };
@@ -55,12 +56,15 @@ export function price({ reduced }) {
     const first = curNow < 0;
     curNow = i;
     const label = `${hh(ITEMS[i][0])} ${ITEMS[i][1]}`;
+    // fecha a troca anterior e deixa só a legenda atual antes de trazer a nova (scroll rápido empilhava textos)
+    tw?.kill();
+    while (nowEl.children.length > 1) nowEl.firstElementChild.remove();
     const old = nowEl.firstElementChild;
+    if (old) gsap.set(old, { yPercent: 0 });
     const span2 = document.createElement('span');
     span2.textContent = label;
     nowEl.appendChild(span2);
     if (first || reduced) { old?.remove(); return; }
-    tw?.progress(1);
     tw = gsap.timeline({ onComplete: () => old?.remove() })
       .to(old, { yPercent: -110, duration: 0.3, ease: 'proa.in' }, 0)
       .fromTo(span2, { yPercent: 110 }, { yPercent: 0, duration: 0.5, ease: 'proa.out' }, 0.12);
